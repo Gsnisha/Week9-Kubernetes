@@ -1,14 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = 'nisha1310/simple-demo:kubeimage1'
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                echo 'Starting Week 9 pipeline'
+                echo 'Week 9 project checked out from GitHub'
             }
         }
 
@@ -39,12 +35,14 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f deployment    l --validate=fal                sh 'kubectbe                vice.yaml'
+                sh 'kubectl apply -f deployment.yaml --validate=false'
+                sh 'kubectl apply -f service.yaml'
             }
         }
     }
 
-    post {    post {uccess {
+    post {
+        success {
             echo 'Pipeline completed successfully!'
         }
         failure {
